@@ -4,5 +4,7 @@ module mux_behavioral (
     input wire sel,
     output reg y
 );
-
+    always @(*) begin
+        y<=!sel&a|sel&b;
+    end
 endmodule

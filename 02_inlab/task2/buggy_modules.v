@@ -4,7 +4,7 @@ module shiftReg0 (
     input din,
     output [3:0] q
 );
-    wire [3:0] shiftReg;  
+    reg [3:0] shiftReg;  
 
     assign q = shiftReg;
 

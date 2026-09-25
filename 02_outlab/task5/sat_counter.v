@@ -16,5 +16,13 @@ module sat_counter (
     //   - if down=1 and up=0: count decrements, but saturates at 0 (stays
     //     at 0 instead of wrapping to 15)
     //   - if up and down are equal (00 or 11): count holds its value
+    wire [3:0] next_count;
+    assign next_count=(up && ~down && count != 4'd15)? count+1:(~up && down && count != 4'd0)?count-1:count;
+    always @(posedge clk ) begin
+        if(rst)
+            count<=4'd0;
+        else
+            count<=next_count;
+    end
 
 endmodule

@@ -1,0 +1,145 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x623811cd5300 .scope module, "comparator" "comparator" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "eq";
+    .port_info 3 /OUTPUT 1 "gt";
+    .port_info 4 /OUTPUT 1 "lt";
+o0x7602facba0a8 .functor BUFZ 1, C4<z>; HiZ drive
+o0x7602facba0d8 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x623811cefe60 .functor XOR 1, o0x7602facba0a8, o0x7602facba0d8, C4<0>, C4<0>;
+L_0x623811cefed0 .functor NOT 1, L_0x623811cefe60, C4<0>, C4<0>, C4<0>;
+L_0x623811ceff90 .functor NOT 1, o0x7602facba0d8, C4<0>, C4<0>, C4<0>;
+L_0x623811cf0050 .functor AND 1, o0x7602facba0a8, L_0x623811ceff90, C4<1>, C4<1>;
+L_0x623811cf0190 .functor NOT 1, o0x7602facba0a8, C4<0>, C4<0>, C4<0>;
+L_0x623811cf0200 .functor AND 1, L_0x623811cf0190, o0x7602facba0d8, C4<1>, C4<1>;
+v0x623811cd5620_0 .net *"_ivl_0", 0 0, L_0x623811cefe60;  1 drivers
+v0x623811cee840_0 .net *"_ivl_4", 0 0, L_0x623811ceff90;  1 drivers
+v0x623811cee920_0 .net *"_ivl_8", 0 0, L_0x623811cf0190;  1 drivers
+v0x623811cee9e0_0 .net "a", 0 0, o0x7602facba0a8;  0 drivers
+v0x623811ceeaa0_0 .net "b", 0 0, o0x7602facba0d8;  0 drivers
+v0x623811ceebb0_0 .net "eq", 0 0, L_0x623811cefed0;  1 drivers
+v0x623811ceec70_0 .net "gt", 0 0, L_0x623811cf0050;  1 drivers
+v0x623811ceed30_0 .net "lt", 0 0, L_0x623811cf0200;  1 drivers
+S_0x623811cd5490 .scope module, "tb" "tb" 3 3;
+ .timescale -9 -9;
+v0x623811cefb00_0 .var "a", 3 0;
+v0x623811cefbe0_0 .var "b", 3 0;
+v0x623811cefc80_0 .net "eq", 0 0, L_0x623811d00310;  1 drivers
+v0x623811cefd20_0 .net "gt", 0 0, L_0x623811d00600;  1 drivers
+v0x623811cefdc0_0 .net "lt", 0 0, L_0x623811d00870;  1 drivers
+S_0x623811ceee90 .scope module, "uut" "fourbit_comparator" 3 7, 4 1 0, S_0x623811cd5490;
+ .timescale 0 0;
+    .port_info 0 /INPUT 4 "a";
+    .port_info 1 /INPUT 4 "b";
+    .port_info 2 /OUTPUT 1 "eq";
+    .port_info 3 /OUTPUT 1 "gt";
+    .port_info 4 /OUTPUT 1 "lt";
+L_0x623811d00450 .functor NOT 1, L_0x623811d00310, C4<0>, C4<0>, C4<0>;
+L_0x623811d00600 .functor AND 1, L_0x623811d00450, L_0x623811d004c0, C4<1>, C4<1>;
+L_0x623811d00760 .functor NOT 1, L_0x623811d00310, C4<0>, C4<0>, C4<0>;
+L_0x623811d00870 .functor AND 1, L_0x623811d00760, L_0x623811d007d0, C4<1>, C4<1>;
+L_0x7602fa891018 .functor BUFT 1, C4<11111111111111111111111111111111>, C4<0>, C4<0>, C4<0>;
+v0x623811cef0d0_0 .net/2s *"_ivl_0", 31 0, L_0x7602fa891018;  1 drivers
+v0x623811cef1d0_0 .net *"_ivl_10", 0 0, L_0x623811d00760;  1 drivers
+v0x623811cef2b0_0 .net *"_ivl_13", 0 0, L_0x623811d007d0;  1 drivers
+v0x623811cef370_0 .net *"_ivl_4", 0 0, L_0x623811d00450;  1 drivers
+v0x623811cef450_0 .net *"_ivl_7", 0 0, L_0x623811d004c0;  1 drivers
+v0x623811cef580_0 .net "a", 3 0, v0x623811cefb00_0;  1 drivers
+v0x623811cef660_0 .net "b", 3 0, v0x623811cefbe0_0;  1 drivers
+v0x623811cef740_0 .net "eq", 0 0, L_0x623811d00310;  alias, 1 drivers
+v0x623811cef800_0 .net "gt", 0 0, L_0x623811d00600;  alias, 1 drivers
+v0x623811cef8c0_0 .var/i "i", 31 0;
+v0x623811cef9a0_0 .net "lt", 0 0, L_0x623811d00870;  alias, 1 drivers
+E_0x623811cd32b0 .event anyedge, v0x623811cef580_0, v0x623811cef660_0;
+L_0x623811d00310 .cmp/eq 32, v0x623811cef8c0_0, L_0x7602fa891018;
+L_0x623811d004c0 .part/v.s v0x623811cefb00_0, v0x623811cef8c0_0, 1;
+L_0x623811d007d0 .part/v.s v0x623811cefbe0_0, v0x623811cef8c0_0, 1;
+    .scope S_0x623811ceee90;
+T_0 ;
+    %wait E_0x623811cd32b0;
+    %pushi/vec4 3, 0, 32;
+    %store/vec4 v0x623811cef8c0_0, 0, 32;
+T_0.0 ;
+    %load/vec4 v0x623811cef8c0_0;
+    %cmpi/s 0, 0, 32;
+    %flag_inv 5; GE is !LT
+    %flag_get/vec4 5;
+    %jmp/0 T_0.2, 5;
+    %load/vec4 v0x623811cef580_0;
+    %load/vec4 v0x623811cef8c0_0;
+    %part/s 1;
+    %load/vec4 v0x623811cef660_0;
+    %load/vec4 v0x623811cef8c0_0;
+    %part/s 1;
+    %xor;
+    %inv;
+    %and;
+T_0.2;
+    %flag_set/vec4 8;
+    %jmp/0xz T_0.1, 8;
+    %load/vec4 v0x623811cef8c0_0;
+    %subi 1, 0, 32;
+    %store/vec4 v0x623811cef8c0_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x623811cd5490;
+T_1 ;
+    %vpi_call 3 16 "$monitor", "At time %0t: a = %b, b = %b -> eq = %b, gt = %b, lt = %b", $time, v0x623811cefb00_0, v0x623811cefbe0_0, v0x623811cefc80_0, v0x623811cefd20_0, v0x623811cefdc0_0 {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_0x623811cd5490;
+T_2 ;
+    %vpi_call 3 21 "$dumpfile", "task2.vcd" {0 0 0};
+    %vpi_call 3 22 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x623811cd5490 {0 0 0};
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x623811cefb00_0, 0, 4;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x623811cefbe0_0, 0, 4;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 4;
+    %store/vec4 v0x623811cefb00_0, 0, 4;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x623811cefbe0_0, 0, 4;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x623811cefb00_0, 0, 4;
+    %pushi/vec4 1, 0, 4;
+    %store/vec4 v0x623811cefbe0_0, 0, 4;
+    %delay 10, 0;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x623811cefb00_0, 0, 4;
+    %pushi/vec4 9, 0, 4;
+    %store/vec4 v0x623811cefbe0_0, 0, 4;
+    %delay 10, 0;
+    %pushi/vec4 7, 0, 4;
+    %store/vec4 v0x623811cefb00_0, 0, 4;
+    %pushi/vec4 8, 0, 4;
+    %store/vec4 v0x623811cefbe0_0, 0, 4;
+    %delay 10, 0;
+    %pushi/vec4 15, 0, 4;
+    %store/vec4 v0x623811cefb00_0, 0, 4;
+    %pushi/vec4 15, 0, 4;
+    %store/vec4 v0x623811cefbe0_0, 0, 4;
+    %delay 10, 0;
+    %vpi_call 3 31 "$finish" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "task2/comparator.v";
+    "task2/tb_task2.v";
+    "task2/fourbit_comparator.v";

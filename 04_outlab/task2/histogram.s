@@ -1,6 +1,6 @@
 section .data
     text:
-        db "mississippi"
+        db "mississsssiiiiippi"
     .end:
     text_len equ (text.end - text)
 
@@ -16,5 +16,25 @@ _start:
 ;   for each byte c in `text`), then exit with the highest count found
 ;   in `counts`
 
+    xor R10,R10
+    forbegin:
+        movzx R11, byte [text+R10]
+        sub R11,'a'
+        inc [counts+R11*4]
+        inc R10
+        cmp R10,text_len
+        jl forbegin
+    
+    xor R10,R10
+    xor R11,R11
+    forbegin2:
+        cmp dword [counts+R10*4],R11d
+        jle skip
+        movzx R11,dword [counts+R10*4]
+        skip:
+        inc R10
+        cmp R10,26
+        jl forbegin2
+    mov rdi,R11
     mov rax, 60
     syscall
